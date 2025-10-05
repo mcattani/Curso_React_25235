@@ -26,6 +26,9 @@ export default function Carrito({ elemCarrito, setCarrito }) {
             icon: 'success',
             confirmButtonText: 'Aceptar'
         });
+
+        // Terminada la compra -> borramos el carrito
+        setCarrito([]);
     }
 
     // Función alerta para eliminar el carrito
