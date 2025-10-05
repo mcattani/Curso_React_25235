@@ -20,28 +20,28 @@ export default function Home() {
                         <Carousel.Item>
                             <img
                                 className="d-block w-100 rounded shadow"
-                                src="./src/assets/images/imagen1.jpg"
+                                src="/images/imagen1.jpg"
                                 alt="Primera imagen"
                             />
                         </Carousel.Item>
                         <Carousel.Item>
                             <img
                                 className="d-block w-100 rounded shadow"
-                                src="./src/assets/images/imagen2.jpg"
+                                src="/images/imagen2.jpg"
                                 alt="Segunda imagen"
                             />
                         </Carousel.Item>
                         <Carousel.Item>
                             <img
                                 className="d-block w-100 rounded shadow"
-                                src="./src/assets/images/imagen3.jpg"
+                                src="/images/imagen3.jpg"
                                 alt="Tercera imagen"
                             />
                         </Carousel.Item>
                         <Carousel.Item>
                             <img
                                 className="d-block w-100 rounded shadow"
-                                src="./src/assets/images/imagen4.jpg"
+                                src="/images/imagen4.jpg"
                                 alt="Cuarta imagen"
                             />
                         </Carousel.Item>
