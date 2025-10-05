@@ -3,19 +3,27 @@ import { Spinner, Card, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 
-export default function Productos() {
+export default function Productos({carrito, setCarrito}) {
 
     const [productos, setProductos] = useState([]);
     const [cargando, setCargando] = useState(true);
 
-    function handleClick() {
+    /*function handleClick() {
         Swal.fire({
             title: "🚧 En construcción",
             text: "Esta funcionalidad estará disponible próximamente.",
             icon: "info",
             confirmButtonText: "Aceptar",
         });
-    };
+    };*/
+
+    // Función para agregar al carrito, usamos App() para conectar los componentes
+    function agregarAlCarrito(producto){
+        setCarrito([...carrito, producto]);
+        //console.log(carrito);
+        
+    }
+
 
     useEffect(() => {
         fetch("https://dummyjson.com/products/category/smartphones?limit=12")
@@ -29,14 +37,12 @@ export default function Productos() {
             .finally(() => setCargando(false))
     }, []);
 
-    // Mientras carga muestra un spinner de bootstrap
+    // Mientras carga muestra un spinner 
     if (cargando) return (
         <div className="text-center mt-2">
             <Spinner animation="border" />
         </div>
     );
-
-    //console.log(productos) // Debugging
 
     return (
         <div className="container" id="productos-api">
@@ -50,7 +56,7 @@ export default function Productos() {
                                 <Card.Title>{producto.title}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">${producto.price}</Card.Subtitle>
                                 <Card.Text>{producto.description}</Card.Text>
-                                <Button variant="primary" className="mt-auto" onClick={handleClick}>Agregar al Carrito</Button>
+                                <Button variant="primary" className="mt-auto" onClick={() => agregarAlCarrito(producto)}>Agregar al Carrito</Button>
                             </Card.Body>
                         </Card>
                     </div>

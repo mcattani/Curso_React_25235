@@ -17,13 +17,18 @@ function App() {
     document.body.setAttribute('data-bs-theme', 'dark');
   }, []);
 
+  // Carrito -> usamos App() para pasar toda la info entre componentes
+  const [carrito, setCarrito] = useState([]);
+
   return (
     <div>
       <Router>
-        <Header />
+        {/* Pasamos la cantidad de productos al Header */}
+        <Header cantCarrito={carrito.length} />
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/productos' element={<Productos/>}/>
+          {/* Pasamos el carrito a Productos */}
+          <Route path='/productos' element={<Productos carrito={carrito} setCarrito={setCarrito} />}/>
 
         </Routes>
         <Footer />

@@ -7,18 +7,17 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-export default function Header() {
-  const [cantCarrito, setCantCarrito] = useState(0)
-  
+export default function Header({cantCarrito}) {
+
   return (
     <Navbar expand="lg" sticky="top" className="bg-body-tertiary">
       <Container id="home">
-        <Navbar.Brand as={Link} to ="/">PhoneXpress</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">PhoneXpress</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to = "/productos">Nuestros Productos</Nav.Link>
-                   
+            <Nav.Link as={Link} to="/productos">Nuestros Productos</Nav.Link>
+
           </Nav>
 
           {/* Carrito a la derecha */}
