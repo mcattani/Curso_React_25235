@@ -16,8 +16,6 @@ export default function Carrito({ elemCarrito, setCarrito }) {
     // Redondeamos el total a dos decimales
     total = Math.round(total*100) / 100;
 
-    
-
     // Función que se ejecuta al finalizar la compra
     function terminarCompra() {
         Swal.fire({
