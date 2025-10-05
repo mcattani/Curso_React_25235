@@ -7,9 +7,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from "./components/Header"
 import Footer from './components/Footer';
 
-// Paginas
+// Páginas
 import Home from "./pages/Home"
 import Productos from './pages/Productos';
+import Carrito from './pages/Carrito';
+
 
 
 function App() {
@@ -26,11 +28,11 @@ function App() {
         {/* Pasamos la cantidad de productos al Header */}
         <Header cantCarrito={carrito.length} />
         <Routes>
-          <Route path='/' element={<Home/>}/>
-          {/* Pasamos el carrito a Productos */}
-          <Route path='/productos' element={<Productos carrito={carrito} setCarrito={setCarrito} />}/>
-
-        </Routes>
+          <Route path='/' element={<Home />} />
+          {/* Pasamos el carrito a Productos y la función para modificarlo*/}
+          <Route path='/productos' element={<Productos carrito={carrito} setCarrito={setCarrito} />} />
+          {/* Lo mismo para la página Carrito */}
+          <Route path='/carrito' element={<Carrito elemCarrito={carrito} setCarrito={setCarrito} />} />        </Routes>
         <Footer />
 
       </Router>

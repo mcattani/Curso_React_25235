@@ -1,29 +1,16 @@
 import { useEffect, useState } from "react";
 import { Spinner, Card, Button } from "react-bootstrap";
-import Swal from "sweetalert2";
-
 
 export default function Productos({carrito, setCarrito}) {
 
     const [productos, setProductos] = useState([]);
     const [cargando, setCargando] = useState(true);
 
-    /*function handleClick() {
-        Swal.fire({
-            title: "🚧 En construcción",
-            text: "Esta funcionalidad estará disponible próximamente.",
-            icon: "info",
-            confirmButtonText: "Aceptar",
-        });
-    };*/
-
-    // Función para agregar al carrito, usamos App() para conectar los componentes
+    // Función para agregar al carrito, usamos App() para "conectar" los componentes
     function agregarAlCarrito(producto){
         setCarrito([...carrito, producto]);
         //console.log(carrito);
-        
     }
-
 
     useEffect(() => {
         fetch("https://dummyjson.com/products/category/smartphones?limit=12")
