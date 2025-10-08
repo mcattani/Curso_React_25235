@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faInstagram, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faInstagram, faXTwitter, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
     return (
@@ -9,8 +9,9 @@ export default function Footer() {
             <Container>
                 <hr className="hr hr-blurry" />
 
-                {/* Iconos sociales */}
+                {/*Iconos de contacto*/}
                 <div className="mb-2">
+                    <FontAwesomeIcon icon={faWhatsapp} size="2x" className="social-icon" style={{ margin: "0 10px" }} />
                     <FontAwesomeIcon icon={faFacebook} size="2x" className="social-icon" style={{ margin: "0 10px" }} />
                     <FontAwesomeIcon icon={faInstagram} size="2x" className="social-icon" style={{ margin: "0 10px" }} />
                     <FontAwesomeIcon icon={faXTwitter} size="2x" className="social-icon" style={{ margin: "0 10px" }} />
