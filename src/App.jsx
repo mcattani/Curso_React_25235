@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import Home from "./pages/Home"
 import Productos from './pages/Productos';
 import Carrito from './pages/Carrito';
+import Equipo from './pages/Equipo';
 
 
 
@@ -32,7 +33,10 @@ function App() {
           {/* Pasamos el carrito a Productos y la función para modificarlo*/}
           <Route path='/productos' element={<Productos carrito={carrito} setCarrito={setCarrito} />} />
           {/* Lo mismo para la página Carrito */}
-          <Route path='/carrito' element={<Carrito elemCarrito={carrito} setCarrito={setCarrito} />} />        </Routes>
+          <Route path='/carrito' element={<Carrito elemCarrito={carrito} setCarrito={setCarrito} />} />
+          <Route path='/equipo' element={<Equipo/>} />
+
+        </Routes>
         <Footer />
 
       </Router>
