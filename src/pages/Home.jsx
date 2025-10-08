@@ -49,7 +49,6 @@ export default function Home() {
                 </div>
                 </Col>
                 
-
                 {/* Columna con texto */}
                 <Col xs={12} md={6}>
                     <p className="fs-5 mb-3">

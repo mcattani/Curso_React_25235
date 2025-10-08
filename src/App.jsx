@@ -12,6 +12,7 @@ import Home from "./pages/Home"
 import Productos from './pages/Productos';
 import Carrito from './pages/Carrito';
 import Equipo from './pages/Equipo';
+import Contacto from './pages/Contacto';
 
 
 
@@ -35,6 +36,7 @@ function App() {
           {/* Lo mismo para la página Carrito */}
           <Route path='/carrito' element={<Carrito elemCarrito={carrito} setCarrito={setCarrito} />} />
           <Route path='/equipo' element={<Equipo/>} />
+          <Route path='/contacto' element={<Contacto/>} />
 
         </Routes>
         <Footer />
