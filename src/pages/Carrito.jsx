@@ -8,13 +8,13 @@ export default function Carrito({ elemCarrito, setCarrito }) {
         return <p className="text-center mt-4">No hay productos en el carrito</p>;
     }
 
-    // Calculamos el total (probablemente haya un método de array para hacer esto...)
+    // Calculamos el total
     let total = 0;
     for (let producto of elemCarrito) {
         total += producto.price;
     }
     // Redondeamos el total a dos decimales
-    total = Math.round(total*100) / 100;
+    total = Math.round(total * 100) / 100;
 
     // Función que se ejecuta al finalizar la compra
     function terminarCompra() {
@@ -70,7 +70,7 @@ export default function Carrito({ elemCarrito, setCarrito }) {
                     ))}
                 </tbody>
             </Table>
-            
+
             {/*Tabla de resumen del total*/}
             <div className="container my-3 d-flex flex-column align-items-center">
                 <Table bordered style={{ width: "auto" }}>

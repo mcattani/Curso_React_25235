@@ -10,7 +10,7 @@ export default function Contacto() {
         mensaje: ""
     });
 
-    // Función que maneja el cambio de eventos
+    // Función que maneja el cambio de eventos del formulario
     function handleChange(e) {
         const { name, value } = e.target;
         setFormData({

@@ -3,7 +3,6 @@ import { Container, Form, Button, Card } from "react-bootstrap";
 import { useState } from "react";
 import Swal from "sweetalert2";
 
-
 export default function Login() {
     const navigate = useNavigate();
     const [usuario, setUsuario] = useState('');
@@ -23,7 +22,7 @@ export default function Login() {
             return;
         }
 
-        // Simulamos autoenticación
+        // Simulamos autenticación
         localStorage.setItem('auth', 'true');
         //alert('Autenticado')
         Swal.fire({

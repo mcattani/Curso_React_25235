@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Spinner, Card, Button } from "react-bootstrap";
 
-export default function Productos({carrito, setCarrito}) {
+export default function Productos({ carrito, setCarrito }) {
 
     const [productos, setProductos] = useState([]);
     const [cargando, setCargando] = useState(true);
 
     // Función para agregar al carrito, usamos App() para "conectar" los componentes
-    function agregarAlCarrito(producto){
+    function agregarAlCarrito(producto) {
         setCarrito([...carrito, producto]);
         //console.log(carrito);
     }

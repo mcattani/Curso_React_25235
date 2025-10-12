@@ -13,7 +13,7 @@ export default function Header({ cantCarrito }) {
   const navigate = useNavigate();
   const isAuth = localStorage.getItem('auth') === 'true';
 
-  // Función para cerrar la sesión --> borra el localStorage
+  // Función para cerrar la sesión --> borra el localStorage y reenvía a login
   function cerrarSesion() {
     localStorage.removeItem('auth');
     navigate('/login');
@@ -39,8 +39,8 @@ export default function Header({ cantCarrito }) {
             )}
           </Nav>
 
-          {/* Carrito a la derecha */}
-          <Nav>
+          {/* Carrito y botones a la derecha */}
+          <Nav className="d-flex align-items-center gap-2">
             <Nav.Link as={Link} to="/carrito" className="position-relative me-4">
               <FontAwesomeIcon icon={faShoppingCart} size="lg" />
               {cantCarrito > 0 && (
@@ -59,11 +59,12 @@ export default function Header({ cantCarrito }) {
                 as={Link}
                 to="/login"
                 variant="outline-light"
-                className="ms-2"
+                className="ms-2 text-nowrap"
+                size="sm"
               >
                 Login
               </Button>) : (
-              <Button variant="outline-light" onClick={cerrarSesion}>Cerrar sesión</Button>
+              <Button variant="outline-light" className='text-nowrap' onClick={cerrarSesion}>Cerrar sesión</Button>
             )
             }
           </Nav>
