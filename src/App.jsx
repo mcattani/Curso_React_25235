@@ -5,16 +5,18 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Componentes
 import Header from "./components/Header"
-import Footer from './components/Footer';
+import Footer from "./components/Footer";
+import SecRoute from "./components/SecRoute"
 
 // Páginas
-import Home from "./pages/Home"
+import Home from './pages/Home'
 import Productos from './pages/Productos';
 import Carrito from './pages/Carrito';
 import Equipo from './pages/Equipo';
 import Contacto from './pages/Contacto';
 import NotFound from './pages/NotFound';
 import Login from './pages/Login';
+import Admin from './pages/Admin'
 
 function App() {
   useEffect(() => {
@@ -39,6 +41,9 @@ function App() {
           <Route path='/equipo' element={<Equipo/>} />
           <Route path='/contacto' element={<Contacto/>} />
           <Route path='/login' element={<Login/>} />
+
+          {/*Ruta protegida*/}
+          <Route path='/admin' element={<SecRoute><Admin/></SecRoute>} />
          
           {/*Ruta no existente*/}
           <Route path='*' element={<NotFound/>} />

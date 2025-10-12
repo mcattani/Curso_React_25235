@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-export default function Header({cantCarrito}) {
+export default function Header({ cantCarrito }) {
 
   const navigate = useNavigate();
   const isAuth = localStorage.getItem('auth') === 'true';
@@ -29,6 +29,14 @@ export default function Header({cantCarrito}) {
             <Nav.Link as={Link} to="/productos">Nuestros Productos</Nav.Link>
             <Nav.Link as={Link} to="/equipo">Quienes somos</Nav.Link>
             <Nav.Link as={Link} to="/contacto">Contacto</Nav.Link>
+
+            {/* Enlace que se muestra solo si el usuario está autenticado */}
+            {isAuth && (
+              <>
+                <Nav.Link as={Link} to="/admin" style={{ color: '#17a2b8', fontWeight: 'bold', textDecoration: 'underline' }}
+                >Admin</Nav.Link>
+              </>
+            )}
           </Nav>
 
           {/* Carrito a la derecha */}
@@ -55,9 +63,9 @@ export default function Header({cantCarrito}) {
               >
                 Login
               </Button>) : (
-                <Button variant="outline-light" onClick={cerrarSesion}>Cerrar sesión</Button>
-              )
-           }
+              <Button variant="outline-light" onClick={cerrarSesion}>Cerrar sesión</Button>
+            )
+            }
           </Nav>
         </Navbar.Collapse>
       </Container>

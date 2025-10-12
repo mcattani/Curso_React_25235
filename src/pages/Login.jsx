@@ -31,7 +31,7 @@ export default function Login() {
             title: '¡Bienvenido!',
             text: 'Autenticación exitosa',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1100
         }).then(() => {
             navigate('/admin');
         });
