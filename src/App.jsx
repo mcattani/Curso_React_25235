@@ -13,6 +13,7 @@ import Productos from './pages/Productos';
 import Carrito from './pages/Carrito';
 import Equipo from './pages/Equipo';
 import Contacto from './pages/Contacto';
+import NotFound from './pages/NotFound';
 
 
 
@@ -37,6 +38,9 @@ function App() {
           <Route path='/carrito' element={<Carrito elemCarrito={carrito} setCarrito={setCarrito} />} />
           <Route path='/equipo' element={<Equipo/>} />
           <Route path='/contacto' element={<Contacto/>} />
+
+          {/*Ruta no existente*/}
+          <Route path='*' element={<NotFound/>} />
 
         </Routes>
         <Footer />
