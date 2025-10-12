@@ -1,13 +1,23 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 export default function Header({cantCarrito}) {
+
+  const navigate = useNavigate();
+  const isAuth = localStorage.getItem('auth') === 'true';
+
+  // Función para cerrar la sesión --> borra el localStorage
+  function cerrarSesion() {
+    localStorage.removeItem('auth');
+    navigate('/login');
+  }
 
   return (
     <Navbar expand="lg" sticky="top" className="bg-body-tertiary">
@@ -34,6 +44,20 @@ export default function Header({cantCarrito}) {
                 </span>
               )}
             </Nav.Link>
+
+            {/* Mostrar botón de login o logout según isAuth */}
+            {!isAuth ? (
+              <Button
+                as={Link}
+                to="/login"
+                variant="outline-light"
+                className="ms-2"
+              >
+                Login
+              </Button>) : (
+                <Button variant="outline-light" onClick={cerrarSesion}>Cerrar sesión</Button>
+              )
+           }
           </Nav>
         </Navbar.Collapse>
       </Container>

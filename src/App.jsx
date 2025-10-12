@@ -14,8 +14,7 @@ import Carrito from './pages/Carrito';
 import Equipo from './pages/Equipo';
 import Contacto from './pages/Contacto';
 import NotFound from './pages/NotFound';
-
-
+import Login from './pages/Login';
 
 function App() {
   useEffect(() => {
@@ -36,9 +35,11 @@ function App() {
           <Route path='/productos' element={<Productos carrito={carrito} setCarrito={setCarrito} />} />
           {/* Lo mismo para la página Carrito */}
           <Route path='/carrito' element={<Carrito elemCarrito={carrito} setCarrito={setCarrito} />} />
+          
           <Route path='/equipo' element={<Equipo/>} />
           <Route path='/contacto' element={<Contacto/>} />
-
+          <Route path='/login' element={<Login/>} />
+         
           {/*Ruta no existente*/}
           <Route path='*' element={<NotFound/>} />
 
