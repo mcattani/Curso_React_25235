@@ -41,12 +41,12 @@ export default function Header({ cantCarrito }) {
 
           {/* Carrito a la derecha */}
           <Nav>
-            <Nav.Link as={Link} to="/carrito" className="position-relative">
+            <Nav.Link as={Link} to="/carrito" className="position-relative me-4">
               <FontAwesomeIcon icon={faShoppingCart} size="lg" />
               {cantCarrito > 0 && (
                 <span
                   className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                  style={{ fontSize: "0.65rem" }}
+                  style={{ fontSize: "0.60rem" }}
                 >
                   {cantCarrito}
                 </span>
