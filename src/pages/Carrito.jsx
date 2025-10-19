@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Table, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 
-export default function Carrito({ elemCarrito, setCarrito }) {
+import { CarritoContext } from "../context/CarritoContext";
+
+export default function Carrito() {
+
+    const { carrito, eliminarCarrito, vaciarCarrito } = useContext(CarritoContext);
+
     // Si no hay productos en el carrito
-    if (elemCarrito.length === 0) {
+    if (carrito.length === 0) {
         return <p className="text-center mt-4">No hay productos en el carrito</p>;
     }
 
     // Calculamos el total
     let total = 0;
-    for (let producto of elemCarrito) {
+    for (let producto of carrito) {
         total += producto.price;
     }
     // Redondeamos el total a dos decimales
@@ -25,27 +30,7 @@ export default function Carrito({ elemCarrito, setCarrito }) {
             confirmButtonText: 'Aceptar'
         });
 
-        // Terminada la compra -> borramos el carrito
-        setCarrito([]);
-    }
-
-    // Función alerta para eliminar el carrito
-    function eliminarCarrito() {
-        Swal.fire({
-            title: '¿Eliminar todo el carrito?',
-            text: "Esta acción no se puede deshacer",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sí, eliminar',
-            cancelButtonText: 'Cancelar'
-        }).then((res) => {
-            if (res.isConfirmed) {
-                // Borramos el carrito
-                setCarrito([]);
-                // Mostramos mensaje de eliminado
-                Swal.fire('Eliminado', 'El carrito ha sido vaciado', 'success');
-            }
-        });
+        vaciarCarrito();
     }
 
     return (
@@ -61,7 +46,7 @@ export default function Carrito({ elemCarrito, setCarrito }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {elemCarrito.map((producto, index) => (
+                    {carrito.map((producto, index) => (
                         <tr key={producto.id}>
                             <td>{index + 1}</td>
                             <td>{producto.title}</td>

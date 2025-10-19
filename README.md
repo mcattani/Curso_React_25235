@@ -9,7 +9,7 @@ Este proyecto corresponde a la pre-entrega del proyecto final para el curso de R
 El proyecto cumple con los siguientes requerimientos:
 
 -   **Arquitectura Basada en Componentes:** La aplicación está completamente modularizada, utilizando componentes reutilizables para la UI.
--   **Hooks de React:** Uso extensivo de hooks como `useState` y `useEffect`, para manejar el estado y la lógica de la aplicación.
+-   **Hooks de React:** Uso extensivo de hooks como `useState`, `useEffect` y `useContext`, para manejar el estado y la lógica de la aplicación.
 -   **Manejo de Eventos:** Implementación de interactividad a través del manejo de eventos de React para acciones del usuario.
 -   **Layout de E-commerce:** Diseño de una interfaz de usuario típica de una tienda online, con páginas para Home, Productos, Carrito, etc.
 -   **Integración con API:** Consumo de datos desde APIs ([mockapi](https://mockapi.io/) y [dummyjson](https://dummyjson.com/)) para mostrar información dinámica de productos.

@@ -1,16 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Spinner, Card, Button } from "react-bootstrap";
+import { CarritoContext } from "../context/CarritoContext";
 
-export default function Productos({ carrito, setCarrito }) {
+export default function Productos() {
+
+    const { agregarAlCarrito } = useContext(CarritoContext)
 
     const [productos, setProductos] = useState([]);
     const [cargando, setCargando] = useState(true);
-
-    // Función para agregar al carrito, usamos App() para "conectar" los componentes
-    function agregarAlCarrito(producto) {
-        setCarrito([...carrito, producto]);
-        //console.log(carrito);
-    }
 
     useEffect(() => {
         fetch("https://dummyjson.com/products/category/smartphones?limit=12")
@@ -26,7 +23,7 @@ export default function Productos({ carrito, setCarrito }) {
 
     // Mientras carga muestra un spinner 
     if (cargando) return (
-        <div className="text-center mt-2">
+        <div className="text-center mt-5">
             <Spinner animation="border" />
         </div>
     );

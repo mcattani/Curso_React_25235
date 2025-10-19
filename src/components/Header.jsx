@@ -3,12 +3,17 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-export default function Header({ cantCarrito }) {
+import { CarritoContext } from '../context/CarritoContext';
+import { useContext } from 'react';
+
+export default function Header() {
+
+  const {carrito} = useContext(CarritoContext)
+  const cantCarrito = carrito.length
 
   const navigate = useNavigate();
   const isAuth = localStorage.getItem('auth') === 'true';

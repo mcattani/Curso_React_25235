@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Card, Container, Row, Col } from "react-bootstrap";
+import { Card, Container, Row, Col, Spinner } from "react-bootstrap";
 
 export default function Equipo() {
 
     const [equipo, setEquipo] = useState([]);
+    const [cargando, setCargando] = useState(true);
 
     useEffect(() => {
         fetch("https://68e40e518e116898997adea7.mockapi.io/equipo")
             .then((res) => res.json())
             .then((data) => setEquipo(data))
-            .catch((err) => console.error("Error al cargar el equipo:", err));
+            .catch((err) => console.error("Error al cargar el equipo:", err))
+            .finally(() => setCargando(false));
     }, []);
+
+    if (cargando) return (
+        <div className="text-center mt-5">
+            <Spinner animation="border" />
+        </div>
+    );
 
     return (
         <Container className="my-5">

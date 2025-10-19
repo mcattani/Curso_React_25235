@@ -18,40 +18,42 @@ import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 import Admin from './pages/Admin'
 
+// Context
+import { CarritoProvider } from './context/CarritoContext';
+
 function App() {
   useEffect(() => {
     document.body.setAttribute('data-bs-theme', 'dark');
   }, []);
 
-  // Carrito -> usamos App() para pasar toda la info entre componentes
-  const [carrito, setCarrito] = useState([]);
-
   return (
     <div>
-      <Router>
-        {/* Pasamos la cantidad de productos al Header */}
-        <Header cantCarrito={carrito.length} />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          {/* Pasamos el carrito a Productos y la función para modificarlo*/}
-          <Route path='/productos' element={<Productos carrito={carrito} setCarrito={setCarrito} />} />
-          {/* Lo mismo para la página Carrito */}
-          <Route path='/carrito' element={<Carrito elemCarrito={carrito} setCarrito={setCarrito} />} />
-          
-          <Route path='/equipo' element={<Equipo/>} />
-          <Route path='/contacto' element={<Contacto/>} />
-          <Route path='/login' element={<Login/>} />
+      <CarritoProvider>
+        <Router>
+          {/* Pasamos la cantidad de productos al Header */}
+          <Header />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            {/* Pasamos el carrito a Productos y la función para modificarlo*/}
+            <Route path='/productos' element={<Productos />} />
+            {/* Lo mismo para la página Carrito */}
+            <Route path='/carrito' element={<Carrito />} />
 
-          {/*Ruta protegida*/}
-          <Route path='/admin' element={<SecRoute><Admin/></SecRoute>} />
-         
-          {/*Ruta no existente*/}
-          <Route path='*' element={<NotFound/>} />
+            <Route path='/equipo' element={<Equipo />} />
+            <Route path='/contacto' element={<Contacto />} />
+            <Route path='/login' element={<Login />} />
 
-        </Routes>
-        <Footer />
+            {/*Ruta protegida*/}
+            <Route path='/admin' element={<SecRoute><Admin /></SecRoute>} />
 
-      </Router>
+            {/*Ruta no existente*/}
+            <Route path='*' element={<NotFound />} />
+
+          </Routes>
+          <Footer />
+
+        </Router>
+      </CarritoProvider>
     </div>
   );
 };
