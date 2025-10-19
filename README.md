@@ -35,7 +35,7 @@ Este proyecto fue construido utilizando las siguientes tecnologías:
 -   **Alertas y Notificaciones:**
     -   [**SweetAlert2**](https://sweetalert2.github.io/): Para crear alertas personalizadas, agradables y responsivas.
 
-## 📂 Estructura del Proyecto
+## 📦 Estructura del Proyecto
 
 La estructura del código fuente está organizada de la siguiente manera para facilitar la modularidad y el mantenimiento:
 
@@ -50,6 +50,9 @@ La estructura del código fuente está organizada de la siguiente manera para fa
      │    ├─── Footer.jsx
      │    ├─── Header.jsx
      │    └─── SecRoute.jsx
+     │
+     ├─── context/       (Manejo de estado global con Context API)
+     │    └─── CarritoContext.jsx
      │
      ├─── pages/         (Componentes que representan páginas completas)
      │    ├─── Admin.jsx
