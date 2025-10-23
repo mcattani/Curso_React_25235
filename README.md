@@ -51,6 +51,7 @@ La estructura del código fuente está organizada de la siguiente manera para fa
      │    └─── SecRoute.jsx
      │
      ├─── context/       (Manejo de estado global con Context API)
+     │    ├─── AuthContext.jsx
      │    └─── CarritoContext.jsx
      │
      ├─── pages/         (Componentes que representan páginas completas)
