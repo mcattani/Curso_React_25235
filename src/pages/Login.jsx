@@ -1,15 +1,19 @@
 import { Navigate, useNavigate } from "react-router-dom";
 import { Container, Form, Button, Card } from "react-bootstrap";
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import Swal from "sweetalert2";
 
 export default function Login() {
     const navigate = useNavigate();
     const [usuario, setUsuario] = useState('');
     const [password, setPassword] = useState('');
+    const { login } = useAuth();
 
     function handleLogin(e) {
         e.preventDefault();
+
+        const success = login(usuario, password);
 
         // Chequeamos que haya algo ingresado
         if (usuario.trim() === '' || password.trim() === '') {
@@ -22,18 +26,26 @@ export default function Login() {
             return;
         }
 
-        // Simulamos autenticación
-        localStorage.setItem('auth', 'true');
-        //alert('Autenticado')
-        Swal.fire({
-            icon: 'success',
-            title: '¡Bienvenido!',
-            text: 'Autenticación exitosa',
-            showConfirmButton: false,
-            timer: 1100
-        }).then(() => {
-            navigate('/admin');
-        });
+        // Si se ingresaron los datos correctamente
+        // Usuario: admin / Contraseña: 1234
+        if (success) {
+            Swal.fire({
+                icon: 'success',
+                title: '¡Bienvenido!',
+                text: 'Autenticación exitosa',
+                showConfirmButton: false,
+                timer: 1100
+            }).then(() => {
+                navigate('/admin');
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error de autenticación',
+                text: 'Usuario o contraseña incorrectos',
+                confirmButtonColor: '#d33'
+            });
+        }
     };
 
     return (
@@ -49,7 +61,7 @@ export default function Login() {
                         <Form.Label>Usuario</Form.Label>
                         <Form.Control
                             type="text"
-                            placeholder="Ingresa tu usuario"
+                            placeholder="Ingresa tu usuario (admin)"
                             value={usuario}
                             onChange={(e) => setUsuario(e.target.value)}
                         />
@@ -59,7 +71,7 @@ export default function Login() {
                         <Form.Label>Contraseña</Form.Label>
                         <Form.Control
                             type="password"
-                            placeholder="Ingresa tu contraseña"
+                            placeholder="Ingresa tu contraseña (1234)"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />

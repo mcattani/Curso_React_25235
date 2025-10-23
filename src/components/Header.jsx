@@ -10,17 +10,23 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { CarritoContext } from '../context/CarritoContext';
 import { useContext } from 'react';
 
+// Importamos contexto Autenticación
+import { useAuth } from '../context/AuthContext';
+
 export default function Header() {
 
-  const {carrito} = useContext(CarritoContext)
+  // Contexto Carrito
+  const { carrito } = useContext(CarritoContext)
   const cantCarrito = carrito.length
 
+  // Contexto Login
+  const { token, logout } = useAuth();
+
   const navigate = useNavigate();
-  const isAuth = localStorage.getItem('auth') === 'true';
 
   // Función para cerrar la sesión --> borra el localStorage y reenvía a login
-  function cerrarSesion() {
-    localStorage.removeItem('auth');
+  function handleLogout() {
+    logout();
     navigate('/login');
   }
 
@@ -36,7 +42,7 @@ export default function Header() {
             <Nav.Link as={Link} to="/contacto">Contacto</Nav.Link>
 
             {/* Enlace que se muestra solo si el usuario está autenticado */}
-            {isAuth && (
+            {token && (
               <>
                 <Nav.Link as={Link} to="/admin" style={{ color: '#17a2b8', fontWeight: 'bold', textDecoration: 'underline' }}
                 >Admin</Nav.Link>
@@ -59,7 +65,7 @@ export default function Header() {
             </Nav.Link>
 
             {/* Mostrar botón de login o logout según isAuth */}
-            {!isAuth ? (
+            {!token ? (
               <Button
                 as={Link}
                 to="/login"
@@ -69,7 +75,7 @@ export default function Header() {
               >
                 Login
               </Button>) : (
-              <Button variant="outline-light" className='text-nowrap' onClick={cerrarSesion}>Cerrar sesión</Button>
+              <Button variant="outline-light" className='text-nowrap' onClick={handleLogout}>Cerrar sesión</Button>
             )
             }
           </Nav>

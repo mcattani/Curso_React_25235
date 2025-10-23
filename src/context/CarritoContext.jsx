@@ -4,7 +4,7 @@ import React, { createContext, useState } from "react";
 import Swal from "sweetalert2";
 
 // Creamos el contexto
-export  const CarritoContext = createContext();
+export const CarritoContext = createContext();
 
 // Proveedor del contexto
 export function CarritoProvider({ children }) {
@@ -41,7 +41,7 @@ export function CarritoProvider({ children }) {
     };
 
     return (
-        <CarritoContext.Provider value={{carrito, agregarAlCarrito, eliminarCarrito, vaciarCarrito}}>
+        <CarritoContext.Provider value={{ carrito, agregarAlCarrito, eliminarCarrito, vaciarCarrito }}>
             {children}
         </CarritoContext.Provider>
     );

@@ -1,12 +1,9 @@
-import { Children } from "react";
 import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function SecRoute({ children }) {
-    const auth = localStorage.getItem("auth") === 'true';
+    const {token} = useAuth();
 
-    if (auth) {
-        return children; // Si está autenticado, muestra el contenido protegido
-    } else {
-        return <Navigate to="/login" />; // Si no, redirige a login
-    };
+    // Si existe el token "autoriza" children si no redirige a login
+    return token ? children : <Navigate to ="/login"/>
 }

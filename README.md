@@ -1,8 +1,7 @@
-# React JS - Comisión 25235
-## Pre-Entrega Proyecto
+# Proyecto Curso React JS - Comisión 25235
 ### Mariano C.
 
-Este proyecto corresponde a la pre-entrega del proyecto final para el curso de React JS, comisión 25235. Es una aplicación de e-commerce desarrollada para demostrar la adquisición y aplicación de los conceptos fundamentales de **Vite+React**.
+Este proyecto corresponde al curso de React JS, comisión 25235. Es una aplicación de e-commerce desarrollada para demostrar la adquisición y aplicación de los conceptos fundamentales de **Vite+React**.
 
 ## ✨ Características Principales
 

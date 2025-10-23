@@ -20,6 +20,7 @@ import Admin from './pages/Admin'
 
 // Context
 import { CarritoProvider } from './context/CarritoContext';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   useEffect(() => {
@@ -28,6 +29,7 @@ function App() {
 
   return (
     <div>
+      <AuthProvider>
       <CarritoProvider>
         <Router>
           {/* Pasamos la cantidad de productos al Header */}
@@ -54,6 +56,7 @@ function App() {
 
         </Router>
       </CarritoProvider>
+      </AuthProvider>
     </div>
   );
 };
