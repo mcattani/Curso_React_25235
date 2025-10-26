@@ -10,10 +10,10 @@ export default function Productos() {
     const [cargando, setCargando] = useState(true);
 
     useEffect(() => {
-        fetch("https://dummyjson.com/products/category/smartphones?limit=12")
+        fetch("https://68e40e518e116898997adea7.mockapi.io/products")
             .then((res) => res.json())
             .then((data) => {
-                setProductos(data.products)
+                setProductos(data)
             })
             // Si hay error de conexión -> catch
             .catch((error) => console.error("Error al obtener los productos de la API", error))
@@ -35,7 +35,7 @@ export default function Productos() {
                 {productos.map((producto) => (
                     <div className="col" key={producto.id}>
                         <Card className="p-3">
-                            <Card.Img variant="top" src={producto.images[0]} />
+                            <Card.Img variant="top" src={producto.image} />
                             <Card.Body>
                                 <Card.Title>{producto.title}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">${producto.price}</Card.Subtitle>
