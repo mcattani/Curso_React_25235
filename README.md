@@ -11,7 +11,7 @@ El proyecto cumple con los siguientes requerimientos:
 -   **Hooks de React:** Uso extensivo de hooks como `useState`, `useEffect` y `useContext`, para manejar el estado y la lógica de la aplicación.
 -   **Manejo de Eventos:** Implementación de interactividad a través del manejo de eventos de React para acciones del usuario.
 -   **Layout de E-commerce:** Diseño de una interfaz de usuario típica de una tienda online, con páginas para Home, Productos, Carrito, etc.
--   **Integración con API:** Consumo de datos desde APIs ([mockapi](https://mockapi.io/) y [dummyjson](https://dummyjson.com/)) para mostrar información dinámica de productos.
+-   **Integración con API:** Consumo de datos desde API ([mockapi](https://mockapi.io/)) para mostrar información dinámica de productos.
 -   **Manejo de Estado de Carga y Errores:** Implementación de feedback visual para el usuario durante las peticiones a la API (estados de "cargando") y manejo de posibles errores.
 -   **Enrutamiento con React Router:** Navegación fluida entre las distintas páginas de la aplicación utilizando `react-router-dom`.
 -   **Rutas Protegidas:** Implementación de rutas que requieren autenticación para acceder, como un panel de administración.
