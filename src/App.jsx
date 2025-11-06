@@ -21,6 +21,7 @@ import Admin from './pages/Admin'
 // Context
 import { CarritoProvider } from './context/CarritoContext';
 import { AuthProvider } from './context/AuthContext';
+import { ProductosProvider } from './context/ProductosContext';
 
 function App() {
   useEffect(() => {
@@ -29,34 +30,37 @@ function App() {
 
   return (
     <div>
-      <AuthProvider>
-      <CarritoProvider>
-        <Router>
-          {/* Pasamos la cantidad de productos al Header */}
-          <Header />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            {/* Pasamos el carrito a Productos y la función para modificarlo*/}
-            <Route path='/productos' element={<Productos />} />
-            {/* Lo mismo para la página Carrito */}
-            <Route path='/carrito' element={<Carrito />} />
+      <ProductosProvider>
+        <AuthProvider>
+          <CarritoProvider>
+            <Router>
+              {/* Pasamos la cantidad de productos al Header */}
+              <Header />
+              <Routes>
 
-            <Route path='/equipo' element={<Equipo />} />
-            <Route path='/contacto' element={<Contacto />} />
-            <Route path='/login' element={<Login />} />
+                <Route path='/' element={<Home />} />
+                {/* Pasamos el carrito a Productos y la función para modificarlo*/}
+                <Route path='/productos' element={<Productos />} />
+                {/* Lo mismo para la página Carrito */}
+                <Route path='/carrito' element={<Carrito />} />
 
-            {/*Ruta protegida*/}
-            <Route path='/admin' element={<SecRoute><Admin /></SecRoute>} />
+                <Route path='/equipo' element={<Equipo />} />
+                <Route path='/contacto' element={<Contacto />} />
+                <Route path='/login' element={<Login />} />
 
-            {/*Ruta no existente*/}
-            <Route path='*' element={<NotFound />} />
+                {/*Ruta protegida*/}
+                <Route path='/admin' element={<SecRoute><Admin /></SecRoute>} />
 
-          </Routes>
-          <Footer />
+                {/*Ruta no existente*/}
+                <Route path='*' element={<NotFound />} />
 
-        </Router>
-      </CarritoProvider>
-      </AuthProvider>
+              </Routes>
+              <Footer />
+
+            </Router>
+          </CarritoProvider>
+        </AuthProvider>
+      </ProductosProvider>
     </div>
   );
 };

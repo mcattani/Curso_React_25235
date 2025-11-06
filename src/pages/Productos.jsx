@@ -1,25 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Spinner, Card, Button } from "react-bootstrap";
 import { CarritoContext } from "../context/CarritoContext";
+import { useProductos } from "../context/ProductosContext";
 
 export default function Productos() {
 
-    const { agregarAlCarrito } = useContext(CarritoContext)
-
-    const [productos, setProductos] = useState([]);
-    const [cargando, setCargando] = useState(true);
-
-    useEffect(() => {
-        fetch("https://68e40e518e116898997adea7.mockapi.io/products")
-            .then((res) => res.json())
-            .then((data) => {
-                setProductos(data)
-            })
-            // Si hay error de conexión -> catch
-            .catch((error) => console.error("Error al obtener los productos de la API", error))
-            // Finalmente (haya error o no cambiamos el valor del setCargando para no mostrar el spinner)
-            .finally(() => setCargando(false))
-    }, []);
+    const { agregarAlCarrito } = useContext(CarritoContext);
+    const { productos, cargando } = useProductos(); // -> Traemos produtos y estado de carga desde el contexto
 
     // Mientras carga muestra un spinner 
     if (cargando) return (
