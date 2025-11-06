@@ -52,7 +52,8 @@ La estructura del código fuente está organizada de la siguiente manera para fa
      │
      ├─── context/       (Manejo de estado global con Context API)
      │    ├─── AuthContext.jsx
-     │    └─── CarritoContext.jsx
+     │    ├─── CarritoContext.jsx
+     │    └─── ProductosContext.jsx
      │
      ├─── pages/         (Componentes que representan páginas completas)
      │    ├─── Admin.jsx
