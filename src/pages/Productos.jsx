@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Spinner, Card, Button } from "react-bootstrap";
+import { Spinner, Card, Button, Alert, Container } from "react-bootstrap";
 import { CarritoContext } from "../context/CarritoContext";
 import { useProductos } from "../context/ProductosContext";
 
@@ -13,6 +13,13 @@ export default function Productos() {
         <div className="text-center mt-5">
             <Spinner animation="border" />
         </div>
+    );
+
+    // Si no hay productos muestra un mensaje
+    if (productos.length === 0) return (
+        <Container className="mt-4">
+            <Alert variant="info">No hay productos disponibles.</Alert>
+        </Container>
     );
 
     return (
