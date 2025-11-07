@@ -5,25 +5,7 @@ import Swal from 'sweetalert2';
 import { useProductos } from "../context/ProductosContext";
 
 export default function Admin() {
-  const { productos, cargando } = useProductos();
-
-  // Función para manejar la edición de un producto
-  function handleEditar(producto) {
-    Swal.fire({
-      icon: "info",
-      title: "Función no implementada",
-      text: `Editar producto "${producto.title}" aún no está disponible.`,
-    });
-  };
-
-  // Función para manejar la eliminación de un producto
-  function handleEliminar(producto) {
-    Swal.fire({
-      icon: "info",
-      title: "Función no implementada",
-      text: `Editar producto "${producto.title}" aún no está disponible.`,
-    });
-  };
+  const { productos, cargando, eliminarProducto } = useProductos();
 
   // Mientras carga muestra un spinner 
   if (cargando) return (
@@ -38,6 +20,31 @@ export default function Admin() {
       <Alert variant="info">No hay productos disponibles.</Alert>
     </Container>
   );
+
+  // Función para manejar la edición de un producto
+  function handleEditar(producto) {
+    Swal.fire({
+      icon: "info",
+      title: "Función no implementada",
+      text: `Editar producto "${producto.title}" aún no está disponible.`,
+    });
+  };
+
+  // Función para manejar la eliminación de un producto
+  function handleEliminar(producto) {
+    Swal.fire({
+      title: `¿Eliminar "${producto.title}" de la lista?`,
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        eliminarProducto(producto.id);
+      }
+    });
+  };
 
   return (
     <Container className="mt-4">
