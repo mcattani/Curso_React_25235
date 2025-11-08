@@ -1,11 +1,17 @@
 import { Container, Table, Button, Spinner, Alert } from 'react-bootstrap';
+import { useState } from 'react';
 import Swal from 'sweetalert2';
 
 // Importamos el contexto de productos
 import { useProductos } from "../context/ProductosContext";
 
+// Importamos el formulario modal para agregar / editar productos
+import ModalProducto from '../components/ModalProducto';
+
 export default function Admin() {
-  const { productos, cargando, eliminarProducto } = useProductos();
+  const { productos, cargando, eliminarProducto, editarProducto } = useProductos();
+  const [showModal, setShowModal] = useState(false);
+  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
   // Mientras carga muestra un spinner 
   if (cargando) return (
@@ -21,16 +27,7 @@ export default function Admin() {
     </Container>
   );
 
-  // Función para manejar la edición de un producto
-  function handleEditar(producto) {
-    Swal.fire({
-      icon: "info",
-      title: "Función no implementada",
-      text: `Editar producto "${producto.title}" aún no está disponible.`,
-    });
-  };
-
-  // Función para manejar la eliminación de un producto
+  // Función del hangle para manejar la eliminación de un producto
   function handleEliminar(producto) {
     Swal.fire({
       title: `¿Eliminar "${producto.title}" de la lista?`,
@@ -46,11 +43,36 @@ export default function Admin() {
     });
   };
 
+  // Función del handle para manejar la edición de un producto
+  function handleEditar(producto) {
+    setProductoSeleccionado(producto);
+    setShowModal(true);
+  }
+
+  // Función del handle para cerrar el modal
+  function handleCloseModal() {
+    setProductoSeleccionado(null);
+    setShowModal(false);
+  }
+
+  // Función del hangle para manejar la edición y agregado de productos
+  function handleGuardarCambios(datosEditados) {
+    if (productoSeleccionado) {
+      // Editar producto
+      editarProducto(productoSeleccionado.id, datosEditados);
+    } else {
+      // Aqui iría la función para agregar producto
+      Swal.fire("Función no implementada", "Agregar producto aún no está disponible.", "info");
+    }
+
+    setShowModal(false);
+  }
+
   return (
     <Container className="mt-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h1>Panel de Administración de Productos</h1>
-
+        {/* Agregar botón para agregar producto */}
       </div>
 
       <Table striped bordered hover responsive>
@@ -91,6 +113,13 @@ export default function Admin() {
           ))}
         </tbody>
       </Table>
+      {/* Agregamos el modal */}
+      <ModalProducto
+        show={showModal}
+        handleClose={handleCloseModal}
+        producto={productoSeleccionado}
+        onGuardar={handleGuardarCambios}
+      />
     </Container>
   );
 }  

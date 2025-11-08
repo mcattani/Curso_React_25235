@@ -47,7 +47,7 @@ export function ProductosProvider({ children }) {
       .then((res) => res.json())
       .then(() => {
         // Actualizamos el estado local sin el producto eliminado
-        setProductos(productos.filter((producto) => producto.id !== id));
+        setProductos((prev) => prev.filter((producto) => producto.id !== id));
         Swal.fire({
           icon: "success",
           title: "Producto eliminado",
@@ -63,7 +63,39 @@ export function ProductosProvider({ children }) {
           text: "No se pudo eliminar el producto.",
         });
       });
-  }
+  };
+
+  // Función para editar los productos (PUT)
+  const editarProducto = (id, datosActualizados) => {
+    fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(datosActualizados),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Actualizamos el producto editado en el estado local
+        setProductos((prevProductos) =>
+          prevProductos.map((producto) =>
+            producto.id === id ? data : producto
+          )
+        );
+        Swal.fire({
+          icon: "success",
+          title: "Producto actualizado",
+          text: "Los cambios fueron guardados correctamente.",
+          timer: 1200,
+          showConfirmButton: false,
+        });
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "No se pudo actualizar el producto.",
+        });
+      });
+  };
 
   return (
     <ProductosContext.Provider
@@ -71,9 +103,9 @@ export function ProductosProvider({ children }) {
         productos,
         cargando,
         obtenerProductos,
-        eliminarProducto
+        eliminarProducto,
+        editarProducto, 
         // agregarProducto,
-        // editarProducto,
       }}
     >
       {children}
