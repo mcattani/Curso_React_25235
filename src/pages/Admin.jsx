@@ -21,11 +21,11 @@ export default function Admin() {
   );
 
   // Si no hay productos muestra un mensaje
-  if (productos.length === 0) return (
-    <Container className="mt-4">
-      <Alert variant="info">No hay productos disponibles.</Alert>
-    </Container>
-  );
+  //if (productos.length === 0) return (
+  //  <Container className="mt-4">
+  //    <Alert variant="info">No hay productos disponibles.</Alert>
+  //  </Container>
+  //);
 
   // Función del handle para manejar la eliminación de un producto
   function handleEliminar(producto) {
@@ -86,44 +86,53 @@ export default function Admin() {
         </Button>
       </div>
 
-      <Table striped bordered hover responsive>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Título</th>
-            <th>Precio</th>
-            <th>Descripción</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {productos.map((producto) => (
-            <tr key={producto.id}>
-              <td>{producto.id}</td>
-              <td>{producto.title}</td>
-              <td>${producto.price}</td>
-              <td>{producto.description.slice(0, 100)}...</td>
-              <td>
-                <Button
-                  variant="warning"
-                  size="sm"
-                  className="me-2"
-                  onClick={() => handleEditar(producto)}
-                >
-                  Editar
-                </Button>
-                <Button
-                  variant="danger"
-                  size="sm"
-                  onClick={() => handleEliminar(producto)}
-                >
-                  Eliminar
-                </Button>
-              </td>
+      {/*El botón de agregar producto siempre se muestra. Si no hay productos se muestra un mensaje*/}
+      {productos.length === 0 ? (
+        <Alert variant="info" className="text-center">
+          No hay productos disponibles.
+        </Alert>
+      ) : (
+
+        <Table striped bordered hover responsive>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Título</th>
+              <th>Precio</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {productos.map((producto) => (
+              <tr key={producto.id}>
+                <td>{producto.id}</td>
+                <td>{producto.title}</td>
+                <td>${producto.price}</td>
+                <td>{producto.description.slice(0, 100)}...</td>
+                <td>
+                  <Button
+                    variant="warning"
+                    size="sm"
+                    className="me-2"
+                    onClick={() => handleEditar(producto)}
+                  >
+                    Editar
+                  </Button>
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => handleEliminar(producto)}
+                  >
+                    Eliminar
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
+
       {/* Agregamos el modal */}
       <ModalProducto
         show={showModal}
