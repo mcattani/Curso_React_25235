@@ -29,7 +29,7 @@ export default function Productos() {
                 {productos.map((producto) => (
                     <div className="col" key={producto.id}>
                         <Card className="p-3">
-                            <Card.Img variant="top" src={producto.image} />
+                            <Card.Img variant="top" src={producto.image}/>
                             <Card.Body>
                                 <Card.Title>{producto.title}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted">${producto.price}</Card.Subtitle>
