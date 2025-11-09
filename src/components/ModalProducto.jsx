@@ -5,6 +5,7 @@
 
 import { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 export default function ModalProducto({ show, handleClose, producto, onGuardar }) {
 
@@ -58,6 +59,26 @@ export default function ModalProducto({ show, handleClose, producto, onGuardar }
         e.preventDefault();
 
         const priceNumber = Number(formData.price);
+
+        // Validamos que la descripción tenga al menos 10 caracteres
+        if (formData.description.trim().length < 10) {
+            Swal.fire({
+                icon: "error",
+                title: "Descripción demasiado corta",
+                text: "La descripción debe tener al menos 10 caracteres.",
+            });
+            return;
+        }
+
+        // Validamos la URL de la imagen (debe comenzar con http o https)
+        if (!formData.image.trim().startsWith("http")) {
+            Swal.fire({
+                icon: "error",
+                title: "URL de imagen inválida",
+                text: "La URL de la imagen debe comenzar con http o https.",
+            });
+            return;
+        }
 
         // Validamos que el precio sea un número válido mayor a 0
         if (isNaN(priceNumber) || priceNumber <= 0) {
@@ -132,6 +153,7 @@ export default function ModalProducto({ show, handleClose, producto, onGuardar }
                             name="description"
                             value={formData.description}
                             onChange={handleChange}
+                            minLength={10}
                             required
                         />
                     </Form.Group>
