@@ -9,7 +9,7 @@ import { useProductos } from "../context/ProductosContext";
 import ModalProducto from '../components/ModalProducto';
 
 export default function Admin() {
-  const { productos, cargando, eliminarProducto, editarProducto } = useProductos();
+  const { productos, cargando, eliminarProducto, editarProducto, agregarProducto } = useProductos();
   const [showModal, setShowModal] = useState(false);
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
@@ -27,7 +27,7 @@ export default function Admin() {
     </Container>
   );
 
-  // Función del hangle para manejar la eliminación de un producto
+  // Función del handle para manejar la eliminación de un producto
   function handleEliminar(producto) {
     Swal.fire({
       title: `¿Eliminar "${producto.title}" de la lista?`,
@@ -61,8 +61,7 @@ export default function Admin() {
       // Editar producto
       editarProducto(productoSeleccionado.id, datosEditados);
     } else {
-      // Aqui iría la función para agregar producto
-      Swal.fire("Función no implementada", "Agregar producto aún no está disponible.", "info");
+      agregarProducto(datosEditados);
     }
 
     setShowModal(false);
@@ -72,7 +71,19 @@ export default function Admin() {
     <Container className="mt-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h1>Panel de Administración de Productos</h1>
-        {/* Agregar botón para agregar producto */}
+      </div>
+
+      <div className="p-3 mb-4 bg-body-tertiary rounded shadow-sm text-center">
+        <Button
+          variant="success"
+          size="lg"
+          onClick={() => {
+            setProductoSeleccionado(null); // Formulario vacío (agregar)
+            setShowModal(true); // Mostrar modal
+          }}
+        >
+          ➕ Agregar producto
+        </Button>
       </div>
 
       <Table striped bordered hover responsive>

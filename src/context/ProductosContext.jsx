@@ -97,6 +97,34 @@ export function ProductosProvider({ children }) {
       });
   };
 
+  // Función para agregar productos (POST)
+  function agregarProducto(nuevoProducto) {
+    fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(nuevoProducto),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Agregamos el nuevo producto al estado local
+        setProductos((prevProductos) => [...prevProductos, data]);
+        Swal.fire({
+          icon: "success",
+          title: "Producto agregado",
+          text: "El producto fue agregado correctamente.",
+          timer: 1200,
+          showConfirmButton: false,
+        });
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "No se pudo agregar el producto.",
+        });
+      });
+  }
+
   return (
     <ProductosContext.Provider
       value={{
@@ -105,7 +133,7 @@ export function ProductosProvider({ children }) {
         obtenerProductos,
         eliminarProducto,
         editarProducto, 
-        // agregarProducto,
+        agregarProducto,
       }}
     >
       {children}
