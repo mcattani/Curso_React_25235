@@ -17,6 +17,7 @@ El proyecto cumple con los siguientes requerimientos:
 -   **Rutas Protegidas:** Implementación de rutas que requieren autenticación para acceder, como un panel de administración.
 -   **Interactividad Mejorada:** Uso de librerías como `SweetAlert2` para notificaciones y alertas más amigables.
 - **Formularios Controlados:** Implementación de formularios controlados funcionales con el uso de [Formspree.](https://formspree.io/)
+- **CRUD Completo:** Se ha implementado un CRUD (Crear, Leer, Actualizar, Eliminar) completo para la gestión de productos, permitiendo interactuar de forma integral con la API.
 
 ## 🚀 Tecnologías y Librerías
 
@@ -48,6 +49,7 @@ La estructura del código fuente está organizada de la siguiente manera para fa
      ├─── components/    (Componentes reutilizables)
      │    ├─── Footer.jsx
      │    ├─── Header.jsx
+     │    ├─── ModalProducto.jsx
      │    └─── SecRoute.jsx
      │
      ├─── context/       (Manejo de estado global con Context API)

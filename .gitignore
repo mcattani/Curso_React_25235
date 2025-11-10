@@ -26,3 +26,4 @@ dist-ssr
 # Archivos extras
 productos-mockapi.json
 reset_mockapi.py
+.env
