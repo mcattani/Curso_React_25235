@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import Swal from "sweetalert2";
 
+import { Helmet } from "react-helmet";
+
 export default function Login() {
     const navigate = useNavigate();
     const [usuario, setUsuario] = useState('');
@@ -49,41 +51,63 @@ export default function Login() {
     };
 
     return (
-        <Container
-            className="d-flex justify-content-center align-items-center mt-5"
-            style={{ minHeight: '70vh' }}
-        >
-            <Card className="p-4 shadow-sm" style={{ width: '100%', maxWidth: 400 }}>
-                <h3 className="text-center mb-4">Iniciar sesión</h3>
+        <>
+            {/* SEO */}
+            <Helmet>
+                <title>Login Administrador | PhoneXpress</title>
+                <meta
+                    name="description"
+                    content="Portal de administración de gestión de productos."
+                />
+                <meta
+                    name="keywords"
+                    content="admin, login, gestión, productos, administración"
+                />
+                <meta property="og:title" content="Login Administrador - PhoneXpress" />
+                <meta
+                    property="og:description"
+                    content="Accedé al panel administrativo para gestionar el catálogo de productos."
+                />
+                <meta property="og:type" content="website" />
+                <meta name="robots" content="noindex, nofollow" /> {/* Evita que los motores de búsqueda indexen esta página */}
+            </Helmet>
 
-                <Form onSubmit={handleLogin}>
-                    <Form.Group className="mb-3" controlId="usuario">
-                        <Form.Label>Usuario</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Ingresa tu usuario (admin)"
-                            value={usuario}
-                            onChange={(e) => setUsuario(e.target.value)}
-                        />
-                    </Form.Group>
+            <Container
+                className="d-flex justify-content-center align-items-center mt-5"
+                style={{ minHeight: '70vh' }}
+            >
+                <Card className="p-4 shadow-sm" style={{ width: '100%', maxWidth: 400 }}>
+                    <h3 className="text-center mb-4">Iniciar sesión</h3>
 
-                    <Form.Group className="mb-3" controlId="password">
-                        <Form.Label>Contraseña</Form.Label>
-                        <Form.Control
-                            type="password"
-                            placeholder="Ingresa tu contraseña (1234)"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </Form.Group>
+                    <Form onSubmit={handleLogin}>
+                        <Form.Group className="mb-3" controlId="usuario">
+                            <Form.Label>Usuario</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Ingresa tu usuario (admin)"
+                                value={usuario}
+                                onChange={(e) => setUsuario(e.target.value)}
+                            />
+                        </Form.Group>
 
-                    <div className="d-grid">
-                        <Button variant="primary" type="submit">
-                            Entrar
-                        </Button>
-                    </div>
-                </Form>
-            </Card>
-        </Container>
+                        <Form.Group className="mb-3" controlId="password">
+                            <Form.Label>Contraseña</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Ingresa tu contraseña (1234)"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </Form.Group>
+
+                        <div className="d-grid">
+                            <Button variant="primary" type="submit">
+                                Entrar
+                            </Button>
+                        </div>
+                    </Form>
+                </Card>
+            </Container>
+        </>
     );
 }

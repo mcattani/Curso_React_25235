@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Container, Row, Col, Spinner } from "react-bootstrap";
+import { Helmet } from "react-helmet";
 
 export default function Equipo() {
 
@@ -21,28 +22,49 @@ export default function Equipo() {
     );
 
     return (
-        <Container className="my-5">
-            <h2 className="text-center mb-4">Nuestro equipo</h2>
-            <Row className="g-4">
-                {equipo.map((persona) => (
-                    <Col key={persona.id} xs={12} sm={6} md={4} lg={3}>
-                        <Card
-                            className="h-100 text-center shadow border-0">
-                            <Card.Img
-                                variant="top"
-                                src={persona.foto}
-                                alt={persona.nombre}
-                                className="img-fluid rounded-top"
-                                style={{ height: "220px", objectFit: "cover" }}
-                            />
-                            <Card.Body>
-                                <Card.Title>{persona.nombre}</Card.Title>
-                                <Card.Subtitle className="text-muted">{persona.puesto}</Card.Subtitle>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
-        </Container>
+        <>
+            {/* SEO */}
+            <Helmet>
+                <title>Equipo | PhoneXpress</title>
+                <meta
+                    name="description"
+                    content="Conoce al equipo detrás de PhoneXpress."
+                />
+                <meta
+                    name="keywords"
+                    content="equipo, empresa, staff, phonexpress"
+                />
+                <meta property="og:title" content="Equipo - PhoneXpress" />
+                <meta
+                    property="og:description"
+                    content="Somos un equipo dedicado a ofrecerte la mejor experiencia en smartphones."
+                />
+                <meta property="og:type" content="website" />
+            </Helmet>
+
+            <Container className="my-5">
+                <h2 className="text-center mb-4">Nuestro equipo</h2>
+                <Row className="g-4">
+                    {equipo.map((persona) => (
+                        <Col key={persona.id} xs={12} sm={6} md={4} lg={3}>
+                            <Card
+                                className="h-100 text-center shadow border-0">
+                                <Card.Img
+                                    variant="top"
+                                    src={persona.foto}
+                                    alt={persona.nombre}
+                                    className="img-fluid rounded-top"
+                                    style={{ height: "220px", objectFit: "cover" }}
+                                />
+                                <Card.Body>
+                                    <Card.Title>{persona.nombre}</Card.Title>
+                                    <Card.Subtitle className="text-muted">{persona.puesto}</Card.Subtitle>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
+            </Container>
+        </>
     );
 }
