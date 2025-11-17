@@ -10,9 +10,9 @@ export default function Carrito() {
     const { carrito, eliminarCarrito, vaciarCarrito } = useContext(CarritoContext);
 
     // Si no hay productos en el carrito
-    //if (carrito.length === 0) {
-    //    return <p className="text-center mt-4">No hay productos en el carrito</p>;
-    //}
+    if (carrito.length === 0) {
+        return <p className="text-center mt-4">No hay productos en el carrito</p>;
+    }
 
     // Calculamos el total
     let total = 0;
