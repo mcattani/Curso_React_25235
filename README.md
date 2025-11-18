@@ -18,6 +18,7 @@ El proyecto cumple con los siguientes requerimientos:
 -   **Interactividad Mejorada:** Uso de librerías como `SweetAlert2` para notificaciones y alertas más amigables.
 - **Formularios Controlados:** Implementación de formularios controlados funcionales con el uso de [Formspree.](https://formspree.io/)
 - **CRUD Completo:** Se ha implementado un CRUD (Crear, Leer, Actualizar, Eliminar) completo para la gestión de productos, permitiendo interactuar de forma integral con la API.
+- **Optimización SEO con React Helmet:** Se utiliza `react-helmet` para gestionar dinámicamente el contenido del `head` del documento, mejorando el SEO de la aplicación.
 
 ## 🚀 Tecnologías y Librerías
 
@@ -34,6 +35,8 @@ Este proyecto fue construido utilizando las siguientes tecnologías:
     -   [**FontAwesome**](https://fontawesome.com/): Biblioteca de iconos vectoriales.
 -   **Alertas y Notificaciones:**
     -   [**SweetAlert2**](https://sweetalert2.github.io/): Para crear alertas personalizadas, agradables y responsivas.
+-   **SEO:**
+    -   [**React Helmet**](https://github.com/nfl/react-helmet): Para gestionar cambios en el `head` del documento y mejorar el SEO.
 
 ## 📦 Estructura del Proyecto
 
