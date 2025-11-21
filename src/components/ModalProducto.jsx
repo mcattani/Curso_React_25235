@@ -141,6 +141,7 @@ export default function ModalProducto({ show, handleClose, producto, onGuardar }
                             name="image"
                             value={formData.image}
                             onChange={handleChange}
+                            placeholder="https://placehold.co/480x480"
                             required
                         />
                     </Form.Group>
