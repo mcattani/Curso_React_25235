@@ -30,16 +30,30 @@ export default function Productos() {
     // Estado para la barra de búsqueda
     const [busqueda, setBusqueda] = useState("");
 
+    // Estado para el debounce de la búsqueda
+    const [textoDebounced, setTextoDebounced] = useState("");
+
+    // Efecto para manejar el debounce
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setTextoDebounced(busqueda);
+        }, 700); // 700ms de retraso
+
+        return () => {
+            clearTimeout(handler); // limpiar el timeout si cambia la búsqueda
+        };
+    }, [busqueda]);
+
     // Filtrar productos por título o descripción
     const productosFiltrados = productos.filter(producto =>
-        producto.title.toLowerCase().includes(busqueda.toLowerCase()) ||
-        producto.description.toLowerCase().includes(busqueda.toLowerCase())
+        producto.title.toLowerCase().includes(textoDebounced.toLowerCase()) ||
+        producto.description.toLowerCase().includes(textoDebounced.toLowerCase())
     );
 
     // Toast cuando no se encuentran productos
     useEffect(() => {
         // Si la búsqueda está vacía, no mostrar toast
-        if (busqueda.trim() === "") return;
+        if (textoDebounced.trim() === "") return;
 
         // Mostrar toast si no hay productos filtrados
         if (productosFiltrados.length === 0) {
@@ -49,7 +63,7 @@ export default function Productos() {
                 theme: "dark"
             });
         }
-    }, [busqueda]);
+    }, [textoDebounced]);
 
     return (
         <>
@@ -106,7 +120,7 @@ export default function Productos() {
             </div>
 
             {/* Toast Container */}
-                <ToastContainer />
+            <ToastContainer />
         </>
     );
 }
