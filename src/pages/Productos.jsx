@@ -60,7 +60,8 @@ export default function Productos() {
             toast.warn("No se encontraron productos que coincidan con tu búsqueda.", {
                 position: "top-center",
                 autoClose: 2000,
-                theme: "dark"
+                theme: "dark",
+                toastId: "no-result" // ID único para evitar múltiples toasts
             });
         }
     }, [textoDebounced]);
@@ -110,8 +111,13 @@ export default function Productos() {
                                 <Card.Body>
                                     <Card.Title>{producto.title}</Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">${producto.price}</Card.Subtitle>
+                                    <Card.Text className={producto.stock > 0 ? "text-success" : "text-danger"}>
+                                        {producto.stock > 0 ? `En stock: ${producto.stock}u` : "Sin stock"}
+                                    </Card.Text>
                                     <Card.Text>{producto.description}</Card.Text>
-                                    <Button variant="primary" className="mt-auto" onClick={() => agregarAlCarrito(producto)}>Agregar al Carrito</Button>
+                                    <Button variant="primary"
+                                        disabled={producto.stock === 0}
+                                        className="mt-auto" onClick={() => agregarAlCarrito(producto)}>Agregar al Carrito</Button>
                                 </Card.Body>
                             </Card>
                         </div>

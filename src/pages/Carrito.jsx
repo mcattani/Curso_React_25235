@@ -14,7 +14,7 @@ export default function Carrito() {
         return <p className="text-center mt-4">No hay productos en el carrito</p>;
     }
 
-    // Calculamos el total
+    // Calculamos el total 
     let total = 0;
     for (let producto of carrito) {
         total += producto.price;
@@ -30,7 +30,6 @@ export default function Carrito() {
             icon: 'success',
             confirmButtonText: 'Aceptar'
         });
-
         vaciarCarrito();
     }
 
