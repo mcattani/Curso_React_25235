@@ -1,8 +1,12 @@
-import { useContext } from "react";
-import { Spinner, Card, Button, Alert, Container } from "react-bootstrap";
+import { useState, useContext, useEffect } from "react";
+import { Spinner, Card, Button, Alert, Container, InputGroup, Form } from "react-bootstrap";
 import { CarritoContext } from "../context/CarritoContext";
 import { useProductos } from "../context/ProductosContext";
 import { Helmet } from "react-helmet";
+
+// Toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Productos() {
 
@@ -22,6 +26,30 @@ export default function Productos() {
             <Alert variant="info">No hay productos disponibles.</Alert>
         </Container>
     );
+
+    // Estado para la barra de búsqueda
+    const [busqueda, setBusqueda] = useState("");
+
+    // Filtrar productos por título o descripción
+    const productosFiltrados = productos.filter(producto =>
+        producto.title.toLowerCase().includes(busqueda.toLowerCase()) ||
+        producto.description.toLowerCase().includes(busqueda.toLowerCase())
+    );
+
+    // Toast cuando no se encuentran productos
+    useEffect(() => {
+        // Si la búsqueda está vacía, no mostrar toast
+        if (busqueda.trim() === "") return;
+
+        // Mostrar toast si no hay productos filtrados
+        if (productosFiltrados.length === 0) {
+            toast.warn("No se encontraron productos que coincidan con tu búsqueda.", {
+                position: "top-center",
+                autoClose: 2000,
+                theme: "dark"
+            });
+        }
+    }, [busqueda]);
 
     return (
         <>
@@ -46,8 +74,22 @@ export default function Productos() {
 
             <div className="container" id="productos-api">
                 <h1 className="text-center mb-4 mt-4">Nuestros Productos</h1>
+
+                {/*Barra de búsqueda */}
+                <div className="mb-4">
+                    <InputGroup>
+                        <Form.Control
+                            type="text"
+                            placeholder="Buscar producto..."
+                            value={busqueda}
+                            onChange={(e) => setBusqueda(e.target.value)}
+                        />
+                    </InputGroup>
+                </div>
+
+                {/*Cards de productos */}
                 <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-                    {productos.map((producto) => (
+                    {productosFiltrados.map((producto) => (
                         <div className="col" key={producto.id}>
                             <Card className="p-3">
                                 <Card.Img variant="top" src={producto.image} />
@@ -62,6 +104,9 @@ export default function Productos() {
                     ))}
                 </div>
             </div>
+
+            {/* Toast Container */}
+                <ToastContainer />
         </>
     );
 }
