@@ -20,6 +20,7 @@ El proyecto cumple con los siguientes requerimientos:
 - **CRUD Completo:** Se ha implementado un CRUD (Crear, Leer, Actualizar, Eliminar) completo para la gestión de productos, permitiendo interactuar de forma integral con la API.
 - **Búsqueda de Productos:** Implementación de una función de búsqueda que permite a los usuarios filtrar productos por nombre en tiempo real.
 - **Optimización SEO con React Helmet:** Se utiliza `react-helmet` para gestionar dinámicamente el contenido del `head` del documento, mejorando el SEO de la aplicación.
+- **Animaciones Fluidas:** Incorporación de animaciones utilizando `framer-motion` para una experiencia de usuario más dinámica y atractiva.
 
 ## 🚀 Tecnologías y Librerías
 
@@ -37,6 +38,8 @@ Este proyecto fue construido utilizando las siguientes tecnologías:
 -   **Alertas y Notificaciones:**
     -   [**SweetAlert2**](https://sweetalert2.github.io/): Para crear alertas personalizadas, agradables y responsivas.
     -   [**React-Toastify**](https://github.com/fkhadra/react-toastify): Para notificaciones personalizadas.
+-   **Animaciones:**
+    -   [**Framer Motion**](https://www.framer.com/motion/): Librería para animaciones en React.
 -   **SEO:**
     -   [**React Helmet**](https://github.com/nfl/react-helmet): Para gestionar cambios en el `head` del documento y mejorar el SEO.
 
@@ -54,6 +57,7 @@ La estructura del código fuente está organizada de la siguiente manera para fa
      ├─── components/    (Componentes reutilizables)
      │    ├─── Footer.jsx
      │    ├─── Header.jsx
+     │    ├─── MaterialWrapper.jsx
      │    ├─── ModalProducto.jsx
      │    └─── SecRoute.jsx
      │
