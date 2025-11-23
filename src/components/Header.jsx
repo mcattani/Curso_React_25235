@@ -51,12 +51,12 @@ export default function Header() {
           </Nav>
 
           {/* Carrito y botones a la derecha */}
-          <Nav className="d-flex align-items-center gap-2">
+          <Nav className="ms-auto d-flex gap-2">
             <Nav.Link as={Link} to="/carrito" className="position-relative me-4">
               <FontAwesomeIcon icon={faShoppingCart} size="lg" />
               {cantCarrito > 0 && (
                 <span
-                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  className="badge rounded-pill bg-danger position-absolute"
                   style={{ fontSize: "0.60rem" }}
                 >
                   {cantCarrito}
@@ -70,7 +70,7 @@ export default function Header() {
                 as={Link}
                 to="/login"
                 variant="outline-light"
-                className="ms-2 text-nowrap"
+                className="text-nowrap"
                 size="sm"
               >
                 Login
