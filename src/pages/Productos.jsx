@@ -4,9 +4,19 @@ import { CarritoContext } from "../context/CarritoContext";
 import { useProductos } from "../context/ProductosContext";
 import { Helmet } from "react-helmet";
 
+// Styled Components para ajustar las cards
+import styled from "styled-components";
+
 // Toastify
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+const ProductImage = styled.img`
+    width: 100%;
+    height: 250px;      
+    object-fit: contain;  
+    border-radius: 8px; 
+`;
 
 export default function Productos() {
 
@@ -107,7 +117,8 @@ export default function Productos() {
                     {productosFiltrados.map((producto) => (
                         <div className="col" key={producto.id}>
                             <Card className="p-3">
-                                <Card.Img variant="top" src={producto.image} />
+                                {/*<Card.Img variant="top" src={producto.image} />*/}
+                                <ProductImage src={producto.image} alt={producto.title} />
                                 <Card.Body>
                                     <Card.Title>{producto.title}</Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">${producto.price}</Card.Subtitle>
