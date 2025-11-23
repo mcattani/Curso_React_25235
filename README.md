@@ -34,6 +34,7 @@ Este proyecto fue construido utilizando las siguientes tecnologías:
 -   **Estilos y UI:**
     -   [**Bootstrap**](https://getbootstrap.com/): Framework de CSS para un diseño responsive y moderno.
     -   [**React-Bootstrap**](https://react-bootstrap.github.io/): Componentes de Bootstrap reconstruidos para React.
+    -   [**Styled-Components**](https://styled-components.com/): Librería para escribir CSS en JavaScript.
     -   [**FontAwesome**](https://fontawesome.com/): Biblioteca de iconos vectoriales.
 -   **Alertas y Notificaciones:**
     -   [**SweetAlert2**](https://sweetalert2.github.io/): Para crear alertas personalizadas, agradables y responsivas.
