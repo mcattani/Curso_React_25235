@@ -26,14 +26,28 @@ export function CarritoProvider({ children }) {
             return;
         }
 
-        // Agrego al carrito
-        setCarrito([...carrito, producto]);
+        setCarrito(prev => {
+            // Ver si el producto ya está en el carrito
+            const existe = prev.find(item => item.id === producto.id);
 
-        // Descuento 1 unidad del stock en la API y actualiza las cards
+            if (existe) {
+                // Si ya existe -> aumentar la cantidad en 1
+                return prev.map(item =>
+                    item.id === producto.id
+                        ? { ...item, cantidad: item.cantidad + 1 }
+                        : item
+                );
+            }
+
+            // Si no existe → agregarlo con cantidad 1
+            return [...prev, { ...producto, cantidad: 1 }];
+        });
+
+        // Descontar stock en la API
         descontarStock(producto.id);
     }
 
-    // Función para vaciar el carrito (con confirmación, para uso del usuario)
+    // Función para vaciar el carrito (con confirmación)
     function eliminarCarrito() {
         Swal.fire({
             title: '¿Eliminar todo el carrito?',
@@ -52,7 +66,7 @@ export function CarritoProvider({ children }) {
         });
     }
 
-    // Función para vaciar el carrito (sin confirmación, para uso interno de la app)
+    // Función para vaciar el carrito (sin confirmación)
     function vaciarCarrito() {
         setCarrito([]);
     };

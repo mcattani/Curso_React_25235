@@ -17,7 +17,8 @@ export default function Carrito() {
     // Calculamos el total 
     let total = 0;
     for (let producto of carrito) {
-        total += producto.price;
+        //total += producto.price;
+        total += producto.price * producto.cantidad;
     }
     // Redondeamos el total a dos decimales
     total = Math.round(total * 100) / 100;
@@ -62,6 +63,7 @@ export default function Carrito() {
                             <th>#</th>
                             <th>Producto</th>
                             <th>Precio</th>
+                            <th>Cantidad</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,6 +72,7 @@ export default function Carrito() {
                                 <td>{index + 1}</td>
                                 <td>{producto.title}</td>
                                 <td>${producto.price}</td>
+                                <td>{producto.cantidad}</td>
                             </tr>
                         ))}
                     </tbody>
