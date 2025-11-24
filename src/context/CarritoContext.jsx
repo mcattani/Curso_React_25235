@@ -1,7 +1,9 @@
 // Context con las funciones carrito, agregarAlCarrito y eliminarCarrito
-
 import React, { createContext, useState } from "react";
 import Swal from "sweetalert2";
+
+// Importamos el contexto de productos para poder gestionar el stock
+import { useProductos } from "./ProductosContext";
 
 // Creamos el contexto
 export const CarritoContext = createContext();
@@ -9,11 +11,26 @@ export const CarritoContext = createContext();
 // Proveedor del contexto
 export function CarritoProvider({ children }) {
     const [carrito, setCarrito] = useState([]);
+    const { descontarStock } = useProductos();
 
     // Función para agregar al carrito
     function agregarAlCarrito(producto) {
+
+        // Si no hay stock, mostramos alerta y no agregamos al carrito
+        if (producto.stock <= 0) {
+            Swal.fire({
+                icon: "warning",
+                title: "Sin stock",
+                text: "Este producto no tiene más unidades disponibles."
+            });
+            return;
+        }
+
+        // Agrego al carrito
         setCarrito([...carrito, producto]);
-        //console.log(carrito);
+
+        // Descuento 1 unidad del stock en la API y actualiza las cards
+        descontarStock(producto.id);
     }
 
     // Función para vaciar el carrito (con confirmación, para uso del usuario)

@@ -125,6 +125,39 @@ export function ProductosProvider({ children }) {
       });
   }
 
+  // Función para descontar stock (PUT)
+  const descontarStock = (id) => {
+    // Buscamos el producto en el estado
+    const producto = productos.find((p) => p.id === id);
+    if (!producto) return;
+
+    // Calculamos el nuevo stock
+    const nuevoStock = producto.stock - 1;
+
+    // Evitamos que baje de 0
+    if (nuevoStock < 0) return;
+
+    fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...producto, stock: nuevoStock }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Actualizamos el estado local para que se refleje en las cards
+        setProductos((prev) =>
+          prev.map((item) => (item.id === id ? data : item))
+        );
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "No se pudo descontar el stock.",
+        });
+      });
+  };
+
   return (
     <ProductosContext.Provider
       value={{
@@ -132,8 +165,9 @@ export function ProductosProvider({ children }) {
         cargando,
         obtenerProductos,
         eliminarProducto,
-        editarProducto, 
+        editarProducto,
         agregarProducto,
+        descontarStock,
       }}
     >
       {children}
