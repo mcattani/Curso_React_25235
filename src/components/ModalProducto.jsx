@@ -13,7 +13,8 @@ export default function ModalProducto({ show, handleClose, producto, onGuardar }
         title: "",
         price: "",
         image: "",
-        description: ""
+        description: "",
+        stock: ""
     });
 
     // Cuando el modal se abre en modo "editar", cargamos los datos del producto al formulario
@@ -23,7 +24,8 @@ export default function ModalProducto({ show, handleClose, producto, onGuardar }
                 title: producto.title || "",
                 price: producto.price?.toString() || "",
                 image: producto.image || "",
-                description: producto.description || ""
+                description: producto.description || "",
+                stock: producto.stock || ""
             });
         } else {
             // Si no hay producto, limpiamos el formulario (modo "agregar")
@@ -31,7 +33,8 @@ export default function ModalProducto({ show, handleClose, producto, onGuardar }
                 title: "",
                 price: "",
                 image: "",
-                description: ""
+                description: "",
+                stock: ""
             });
         }
     }, [producto]);
@@ -51,6 +54,23 @@ export default function ModalProducto({ show, handleClose, producto, onGuardar }
     // Manejo de inputs del formulario
     const handleChange = (e) => {
         const { name, value } = e.target;
+
+        // Convertimos el valor a número para price y stock
+        if (name === "price") {
+            setFormData((prev) => ({
+                ...prev,
+                price: Number(value)
+            }));
+            return;
+        }
+        if (name === "stock") {
+            setFormData((prev) => ({
+                ...prev,
+                stock: Number(value)
+            }));
+            return;
+        }
+        // Resto de los campos (texto)
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
@@ -131,6 +151,19 @@ export default function ModalProducto({ show, handleClose, producto, onGuardar }
                             // Arregla problemas de decimales en algunos navegadores
                             step="any"
                             inputMode="decimal"
+                        />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                        <Form.Label>Stock</Form.Label>
+                        <Form.Control
+                            type="number"
+                            name="stock"
+                            value={formData.stock}
+                            onChange={handleChange}
+                            required
+                            min="0" // Evita stock negativo.
+                            step="1" // Evita decimales
                         />
                     </Form.Group>
 

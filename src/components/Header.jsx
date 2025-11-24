@@ -35,24 +35,29 @@ export default function Header() {
       <Container id="home">
         <Navbar.Brand as={Link} to="/">PhoneXpress</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
         <Navbar.Collapse id="basic-navbar-nav">
+
+          {/* Links */}
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/productos">Nuestros Productos</Nav.Link>
             <Nav.Link as={Link} to="/equipo">Quienes somos</Nav.Link>
             <Nav.Link as={Link} to="/contacto">Contacto</Nav.Link>
 
-            {/* Enlace que se muestra solo si el usuario está autenticado */}
             {token && (
-              <>
-                <Nav.Link as={Link} to="/admin" style={{ color: '#17a2b8', fontWeight: 'bold', textDecoration: 'underline' }}
-                >Admin</Nav.Link>
-              </>
+              <Nav.Link
+                as={Link}
+                to="/admin"
+                style={{ color: '#17a2b8', fontWeight: 'bold', textDecoration: 'underline' }}
+              >
+                Admin
+              </Nav.Link>
             )}
           </Nav>
 
-          {/* Carrito y botones a la derecha */}
-          <Nav className="ms-auto d-flex gap-2">
-            <Nav.Link as={Link} to="/carrito" className="position-relative me-4">
+          {/* Carrito */}
+          <Nav className="ms-auto d-flex align-items-center">
+            <Nav.Link as={Link} to="/carrito" className="position-relative me-3">
               <FontAwesomeIcon icon={faShoppingCart} size="lg" />
               {cantCarrito > 0 && (
                 <span
@@ -63,22 +68,32 @@ export default function Header() {
                 </span>
               )}
             </Nav.Link>
+          </Nav>
 
-            {/* Mostrar botón de login o logout según isAuth */}
+          {/* Botón Login / Cerrar Sesión */}
+          <div className="d-flex align-items-center">
             {!token ? (
               <Button
                 as={Link}
                 to="/login"
                 variant="outline-light"
-                className="text-nowrap"
+                className="px-3 text-nowrap"
                 size="sm"
               >
                 Login
-              </Button>) : (
-              <Button variant="outline-light" className='text-nowrap' onClick={handleLogout}>Cerrar sesión</Button>
-            )
-            }
-          </Nav>
+              </Button>
+            ) : (
+              <Button
+                variant="outline-light"
+                className="px-3 text-nowrap"
+                size="sm"
+                onClick={handleLogout}
+              >
+                Cerrar sesión
+              </Button>
+            )}
+          </div>
+
         </Navbar.Collapse>
       </Container>
     </Navbar>
