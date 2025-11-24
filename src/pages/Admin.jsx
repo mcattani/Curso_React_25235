@@ -114,7 +114,6 @@ export default function Admin() {
             No hay productos disponibles.
           </Alert>
         ) : (
-
           <Table striped bordered hover responsive>
             <thead>
               <tr>
@@ -131,7 +130,7 @@ export default function Admin() {
                   <td>{producto.id}</td>
                   <td>{producto.title}</td>
                   <td>${producto.price}</td>
-                  <td>{producto.description.slice(0, 100)}...</td>
+                  <td>{producto.description.slice(0, 90)}...</td>
                   <td className='d-flex flex-column flex-md-row gap-2'>
                     <Button
                       variant="warning"
