@@ -25,7 +25,7 @@ export default function ModalProducto({ show, handleClose, producto, onGuardar }
                 price: producto.price?.toString() || "",
                 image: producto.image || "",
                 description: producto.description || "",
-                stock: producto.stock || ""
+                stock: producto.stock ?? 0 // Si no hay stock -> 0
             });
         } else {
             // Si no hay producto, limpiamos el formulario (modo "agregar")
@@ -34,7 +34,7 @@ export default function ModalProducto({ show, handleClose, producto, onGuardar }
                 price: "",
                 image: "",
                 description: "",
-                stock: ""
+                stock: 0
             });
         }
     }, [producto]);
@@ -55,14 +55,7 @@ export default function ModalProducto({ show, handleClose, producto, onGuardar }
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        // Convertimos el valor a número para price y stock
-        if (name === "price") {
-            setFormData((prev) => ({
-                ...prev,
-                price: Number(value)
-            }));
-            return;
-        }
+        // El stock debe ser un número entero
         if (name === "stock") {
             setFormData((prev) => ({
                 ...prev,
