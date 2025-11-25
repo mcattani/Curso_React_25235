@@ -158,6 +158,33 @@ export function ProductosProvider({ children }) {
       });
   };
 
+  // Función para sumar stock (PUT) (usada al eliminar el carrito)
+  const sumarStock = (id, cantidad) => {
+    const producto = productos.find((p) => p.id === id);
+    if (!producto) return;
+
+    const nuevoStock = producto.stock + cantidad;
+
+    fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...producto, stock: nuevoStock }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setProductos((prev) =>
+          prev.map((item) => (item.id === id ? data : item))
+        );
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "No se pudo actualizar el stock.",
+        });
+      });
+  };
+
   return (
     <ProductosContext.Provider
       value={{
@@ -168,6 +195,7 @@ export function ProductosProvider({ children }) {
         editarProducto,
         agregarProducto,
         descontarStock,
+        sumarStock,
       }}
     >
       {children}

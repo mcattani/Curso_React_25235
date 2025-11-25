@@ -11,7 +11,7 @@ export const CarritoContext = createContext();
 // Proveedor del contexto
 export function CarritoProvider({ children }) {
     const [carrito, setCarrito] = useState([]);
-    const { descontarStock } = useProductos();
+    const { descontarStock, sumarStock } = useProductos();
 
     // Función para agregar al carrito
     function agregarAlCarrito(producto) {
@@ -38,8 +38,7 @@ export function CarritoProvider({ children }) {
                         : item
                 );
             }
-
-            // Si no existe → agregarlo con cantidad 1
+            // Si no existe -> agregarlo con cantidad 1
             return [...prev, { ...producto, cantidad: 1 }];
         });
 
@@ -47,7 +46,7 @@ export function CarritoProvider({ children }) {
         descontarStock(producto.id);
     }
 
-    // Función para vaciar el carrito (con confirmación)
+    // Función para vaciar el carrito (con confirmación) -> Devuelve el stock si no se realiza la compra
     function eliminarCarrito() {
         Swal.fire({
             title: '¿Eliminar todo el carrito?',
@@ -58,6 +57,10 @@ export function CarritoProvider({ children }) {
             cancelButtonText: 'Cancelar'
         }).then((res) => {
             if (res.isConfirmed) {
+                // Devolvemos el stock de cada producto
+                carrito.forEach(item => {
+                    sumarStock(item.id, item.cantidad);
+                });
                 // Borramos el carrito
                 setCarrito([]);
                 // Mostramos mensaje de eliminado
