@@ -1,6 +1,8 @@
 # Proyecto Curso React JS - Comisión 25235
 ### Mariano C.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0bc037b4-2455-4ff7-823a-18cecbd1a4f0/deploy-status)](https://app.netlify.com/projects/marianoctt/deploys)
+
 Este proyecto corresponde al curso de React JS, comisión 25235. Es una aplicación de e-commerce desarrollada para demostrar la adquisición y aplicación de los conceptos fundamentales de **Vite+React**.
 
 ## ✨ Características Principales
@@ -20,7 +22,8 @@ El proyecto cumple con los siguientes requerimientos:
 - **CRUD Completo:** Se ha implementado un CRUD (Crear, Leer, Actualizar, Eliminar) completo para la gestión de productos, permitiendo interactuar de forma integral con la API.
 - **Búsqueda de Productos:** Implementación de una función de búsqueda que permite a los usuarios filtrar productos por nombre en tiempo real.
 - **Optimización SEO con React Helmet:** Se utiliza `react-helmet` para gestionar dinámicamente el contenido del `head` del documento, mejorando el SEO de la aplicación.
-- **Animaciones Fluidas:** Incorporación de animaciones utilizando `framer-motion` para una experiencia de usuario más dinámica y atractiva.
+-   **Animaciones Fluidas:** Incorporación de animaciones utilizando `framer-motion` para una experiencia de usuario más dinámica y atractiva.
+-   **Deploy en Netlify:** [Link al deploy](https://marianoctt.netlify.app/)
 
 ## 🚀 Tecnologías y Librerías
 
